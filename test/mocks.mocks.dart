@@ -3,15 +3,22 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
+import 'dart:async' as _i5;
 
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:myapp/core/error/failures.dart' as _i5;
-import 'package:myapp/features/number_trivia/domain/entities/number_trivia.dart'
-    as _i6;
-import 'package:myapp/features/number_trivia/domain/repositories/number_trivia_repository.dart'
+import 'package:myapp/core/error/failures.dart' as _i6;
+import 'package:myapp/core/network/network_info.dart' as _i10;
+import 'package:myapp/features/number_trivia/data/datasources/number_trivia_local_datasource.dart'
+    as _i9;
+import 'package:myapp/features/number_trivia/data/datasources/number_trivia_remote_datasource.dart'
+    as _i8;
+import 'package:myapp/features/number_trivia/data/models/number_trivia_model.dart'
     as _i3;
+import 'package:myapp/features/number_trivia/domain/entities/number_trivia.dart'
+    as _i7;
+import 'package:myapp/features/number_trivia/domain/repositories/number_trivia_repository.dart'
+    as _i4;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -36,17 +43,28 @@ class _FakeEither_0<L, R> extends _i1.SmartFake implements _i2.Either<L, R> {
         );
 }
 
+class _FakeNumberTriviaModel_1 extends _i1.SmartFake
+    implements _i3.NumberTriviaModel {
+  _FakeNumberTriviaModel_1(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
 /// A class which mocks [NumberTriviaRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockNumberTriviaRepository extends _i1.Mock
-    implements _i3.NumberTriviaRepository {
+    implements _i4.NumberTriviaRepository {
   MockNumberTriviaRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.Failure, _i6.NumberTrivia>> getConcreteNumberTrivia(
+  _i5.Future<_i2.Either<_i6.Failure, _i7.NumberTrivia>> getConcreteNumberTrivia(
           int? number) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -54,31 +72,128 @@ class MockNumberTriviaRepository extends _i1.Mock
           [number],
         ),
         returnValue:
-            _i4.Future<_i2.Either<_i5.Failure, _i6.NumberTrivia>>.value(
-                _FakeEither_0<_i5.Failure, _i6.NumberTrivia>(
+            _i5.Future<_i2.Either<_i6.Failure, _i7.NumberTrivia>>.value(
+                _FakeEither_0<_i6.Failure, _i7.NumberTrivia>(
           this,
           Invocation.method(
             #getConcreteNumberTrivia,
             [number],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.Failure, _i6.NumberTrivia>>);
+      ) as _i5.Future<_i2.Either<_i6.Failure, _i7.NumberTrivia>>);
 
   @override
-  _i4.Future<_i2.Either<_i5.Failure, _i6.NumberTrivia>>
+  _i5.Future<_i2.Either<_i6.Failure, _i7.NumberTrivia>>
       getRandomNumberTrivia() => (super.noSuchMethod(
             Invocation.method(
               #getRandomNumberTrivia,
               [],
             ),
             returnValue:
-                _i4.Future<_i2.Either<_i5.Failure, _i6.NumberTrivia>>.value(
-                    _FakeEither_0<_i5.Failure, _i6.NumberTrivia>(
+                _i5.Future<_i2.Either<_i6.Failure, _i7.NumberTrivia>>.value(
+                    _FakeEither_0<_i6.Failure, _i7.NumberTrivia>(
               this,
               Invocation.method(
                 #getRandomNumberTrivia,
                 [],
               ),
             )),
-          ) as _i4.Future<_i2.Either<_i5.Failure, _i6.NumberTrivia>>);
+          ) as _i5.Future<_i2.Either<_i6.Failure, _i7.NumberTrivia>>);
+}
+
+/// A class which mocks [NumberTriviaRemoteDatasource].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockNumberTriviaRemoteDatasource extends _i1.Mock
+    implements _i8.NumberTriviaRemoteDatasource {
+  MockNumberTriviaRemoteDatasource() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i5.Future<_i3.NumberTriviaModel> getConcreteNumberTrivia(int? number) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getConcreteNumberTrivia,
+          [number],
+        ),
+        returnValue:
+            _i5.Future<_i3.NumberTriviaModel>.value(_FakeNumberTriviaModel_1(
+          this,
+          Invocation.method(
+            #getConcreteNumberTrivia,
+            [number],
+          ),
+        )),
+      ) as _i5.Future<_i3.NumberTriviaModel>);
+
+  @override
+  _i5.Future<_i3.NumberTriviaModel> getRandomNumberTrivia() =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getRandomNumberTrivia,
+          [],
+        ),
+        returnValue:
+            _i5.Future<_i3.NumberTriviaModel>.value(_FakeNumberTriviaModel_1(
+          this,
+          Invocation.method(
+            #getRandomNumberTrivia,
+            [],
+          ),
+        )),
+      ) as _i5.Future<_i3.NumberTriviaModel>);
+}
+
+/// A class which mocks [NumberTriviaLocalDatasource].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockNumberTriviaLocalDatasource extends _i1.Mock
+    implements _i9.NumberTriviaLocalDatasource {
+  MockNumberTriviaLocalDatasource() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i5.Future<_i3.NumberTriviaModel> getLastNumberTrivia() =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getLastNumberTrivia,
+          [],
+        ),
+        returnValue:
+            _i5.Future<_i3.NumberTriviaModel>.value(_FakeNumberTriviaModel_1(
+          this,
+          Invocation.method(
+            #getLastNumberTrivia,
+            [],
+          ),
+        )),
+      ) as _i5.Future<_i3.NumberTriviaModel>);
+
+  @override
+  _i5.Future<void> cacheNumberTrivia(_i3.NumberTriviaModel? triviaToCache) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #cacheNumberTrivia,
+          [triviaToCache],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+}
+
+/// A class which mocks [NetworkInfo].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockNetworkInfo extends _i1.Mock implements _i10.NetworkInfo {
+  MockNetworkInfo() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i5.Future<bool> get isConnected => (super.noSuchMethod(
+        Invocation.getter(#isConnected),
+        returnValue: _i5.Future<bool>.value(false),
+      ) as _i5.Future<bool>);
 }
